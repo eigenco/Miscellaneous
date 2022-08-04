@@ -246,7 +246,7 @@ INT13_wait_ready_ww:
 	pop	ds
 	iret
 
-INT13_disk_type:
+INT13_disk_type: ; 1024 cylinders, 16 heads, 63 sectors
 	mov     cx, 0xffff
 	mov     dx, 0x0f01
 	iret

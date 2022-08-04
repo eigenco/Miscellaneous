@@ -88,6 +88,8 @@ incbin "tvga9000i.bin", 0, 0x7d68
 INT13:
 	cmp     ah, 2
 	je      INT13_read_disk
+	cmp     ah, 3
+	je      INT13_write_disk
 	cmp     ah, 8
 	je      INT13_disk_type
 	iret
@@ -158,6 +160,90 @@ INT13_read_word:
 	pop     cx
 	pop	bx
 	pop	ax
+	iret
+
+INT13_write_disk:
+	push	ds
+	push	ax
+	push	bx
+	push	cx
+	push	dx
+	push	di
+	push	si
+
+	mov     si, es
+	mov     ds, si
+	mov     si, bx
+	mov     di, ax
+
+	mov     bx, cx
+	and     bx, 63
+
+	shr     cl, 6
+	xchg    cl, ch
+
+	xchg    dl, dh
+	and     dx, 0x0f
+
+	mov     al, dl
+	or      al, 0xa0
+	mov     dx, 0x176
+	out     dx, al
+
+	mov     ax, di
+	mov     dx, 0x172
+	out     dx, al
+
+	mov     al, bl
+	mov     dx, 0x173
+	out     dx, al
+
+	mov     al, cl
+	mov     dx, 0x174
+	out     dx, al
+
+	mov     al, ch
+	mov     dx, 0x175
+	out     dx, al
+
+	mov     al, 0x30
+	mov     dx, 0x177
+	out     dx, al
+
+	mov     bx, di
+INT13_keep_writing:
+	mov     dx, 0x177
+	in      al, dx
+	test    al, 0x80
+	jnz     INT13_keep_writing
+	mov     cx, 256
+INT13_wait_ready_w:
+	in      al, dx
+	test    al, 8
+	jz      INT13_wait_ready_w
+INT13_write_word:
+	mov     dx, 0x170
+	lodsw
+	out     dx, ax
+	loop    INT13_write_word
+	dec     bl
+INT13_wait_ready_ww:
+	mov     dx, 0x177
+	in      al, dx
+	test    al, 0x80
+	jnz     INT13_wait_ready_ww
+	mov     al, 0xe7
+	mov     dx, 0x177
+	out     dx, al
+	jnz     INT13_keep_writing
+
+	pop	si
+	pop     di
+	pop     dx
+	pop     cx
+	pop	bx
+	pop	ax
+	pop	ds
 	iret
 
 INT13_disk_type:

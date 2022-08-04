@@ -1,3 +1,7 @@
+import os
+
+os.system('nasmw -fbin int13.asm -o int13.bin')
+
 file = open("int13.bin", "rb")
 binary = file.read(-1)
 y = 0
@@ -20,3 +24,5 @@ for x in range(16384):
 	bin[x+16384] = binary[2*x+1]
 file.write(bin)
 file.close()
+
+os.system('copy /b vgabios.bin+vgabios.bin vgabx2.bin')

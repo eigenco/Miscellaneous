@@ -12,4 +12,4 @@ I'm using compact flash adapter in the IDE connector of my Sound Blaster AWE64, 
 
 ![20220807160957](https://user-images.githubusercontent.com/42321684/183293348-9df50234-928c-420a-9911-57a270743351.jpg)
 
-Boot process is rather bare bones. I made a replacement int 13h that does access using ATA PIO and boot process is handled by my replacement int 19h. These are currently raw replacements and prevent any other processes from occurring (i.e. floppy access).
+Boot process is rather bare bones. I made a replacement int 13h that does access using ATA PIO and boot process is handled by my replacement int 19h. These are currently raw replacements and prevent any other processes using these ints from occurring (i.e. floppy access).

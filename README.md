@@ -6,7 +6,7 @@ Recently fixed buggy write routine in int13.asm that corrupted data when writing
 
 Remember to set VGABIOS shadow option on in the BIOS. This significantly shortens load times.
 
-Currently only standard maximum CHS 1024/16/63 geometry is supported. This gives DOS the impression that the drive is 504MiB in size (the historical limit, larger disks will work, but their size is limited).
+Currently only standard maximum CHS 1024/16/63 geometry is supported. This gives DOS the impression that the drive is 504 MiB in size (the historical limit, larger disks will work, but their size is limited).
 
 The VGABIOS ROM chip one needs to upload the binary to is circled lower in the photo below.
 

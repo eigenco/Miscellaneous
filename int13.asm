@@ -214,28 +214,23 @@ INT13_write_disk:
 INT13_keep_writing:
 	mov     dx, 0x177
 	in      al, dx
-	test    al, 0x80
-	jnz     INT13_keep_writing
+	and	al, 0xe9
+	cmp	al, 0x48
+	jne     INT13_keep_writing
 	mov     cx, 256
-INT13_wait_ready_w:
-	in      al, dx
-	test    al, 8
-	jz      INT13_wait_ready_w
 INT13_write_word:
 	mov     dx, 0x170
 	lodsw
 	out     dx, ax
 	loop    INT13_write_word
 	dec     bl
-INT13_wait_ready_ww:
-	mov     dx, 0x177
-	in      al, dx
-	test    al, 0x80
-	jnz     INT13_wait_ready_ww
-	mov     al, 0xe7
-	mov     dx, 0x177
-	out     dx, al
 	jnz     INT13_keep_writing
+	mov	dx, 0x177
+INT13_write_end:
+	in	al, dx
+	and	al, 0xe9
+	cmp	al, 0x40
+	jne	INT13_write_end	
 
 	pop	si
 	pop     di

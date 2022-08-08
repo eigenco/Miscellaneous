@@ -146,8 +146,8 @@ INT13_wait_ready:
 	in      al, dx
 	test    al, 8
 	jz      INT13_wait_ready
-INT13_read_word:
 	mov     dx, 0x170
+INT13_read_word:
 	in      ax, dx
 	stosw
 	loop    INT13_read_word
@@ -218,8 +218,8 @@ INT13_keep_writing:
 	cmp	al, 0x48
 	jne     INT13_keep_writing
 	mov     cx, 256
-INT13_write_word:
 	mov     dx, 0x170
+INT13_write_word:
 	lodsw
 	out     dx, ax
 	loop    INT13_write_word

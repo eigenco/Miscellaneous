@@ -1,6 +1,6 @@
 # Miscellaneous
 
-D.asm: Custom colorful dir command for slow DOS PCs with large drives (such as IBM 5150 with XTIDE). Doesn't calculate free disk space so works much faster. Might have some issues with drives containing or having contained long filenames.
+D.pas: Custom colorful dir command for slow DOS PCs with large drives (such as IBM 5150 with XTIDE). Doesn't calculate free disk space so works much faster. Might have some issues with drives containing or having contained long filenames.
 
 ![D](https://github.com/eigenco/Miscellaneous/assets/42321684/15c5d712-e263-4e88-befc-252601ad1ce9)
 

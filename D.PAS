@@ -106,7 +106,12 @@ begin
       begin
         textcolor(yellow);
         write('<Press enter to continue>');
-        readln;
+        {readln;}
+        asm
+          mov ax, 0
+          int 16h
+        end;
+        writeln;
         row := 0;
       end;
     end;

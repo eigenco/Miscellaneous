@@ -83,20 +83,20 @@ begin
       begin
         if dirinfo.attr and $10 = $10 then
         begin
-          writeln('       <DIR>');
+          writeln('         <DIR>');
         end
         else
         begin
           write('  ');
           textcolor(white);
           str(dirinfo.size, fs);
-          if length(fs) = 1 then tmp := '       ' + fs;
-          if length(fs) = 2 then tmp := '      ' + fs;
-          if length(fs) = 3 then tmp := '     ' + fs;
-          if length(fs) = 4 then tmp :=                               '   ' + fs[1] + ',' + fs[2] + fs[3] + fs[4];
-          if length(fs) = 5 then tmp :=                        '  ' + fs[1] + fs[2] + ',' + fs[3] + fs[4] + fs[5];
-          if length(fs) = 6 then tmp :=                 ' ' + fs[1] + fs[2] + fs[3] + ',' + fs[4] + fs[5] + fs[6];
-          if length(fs) = 7 then tmp :=         fs[1] + ',' + fs[2] + fs[3] + fs[4] + ',' + fs[5] + fs[6] + fs[7];
+          if length(fs) = 1 then tmp := '         ' + fs;
+          if length(fs) = 2 then tmp := '        ' + fs;
+          if length(fs) = 3 then tmp := '       ' + fs;
+          if length(fs) = 4 then tmp :=                             '     ' + fs[1] + ',' + fs[2] + fs[3] + fs[4];
+          if length(fs) = 5 then tmp :=                      '    ' + fs[1] + fs[2] + ',' + fs[3] + fs[4] + fs[5];
+          if length(fs) = 6 then tmp :=               '   ' + fs[1] + fs[2] + fs[3] + ',' + fs[4] + fs[5] + fs[6];
+          if length(fs) = 7 then tmp :=   ' ' + fs[1] + ',' + fs[2] + fs[3] + fs[4] + ',' + fs[5] + fs[6] + fs[7];
           if length(fs) = 8 then tmp := fs[1] + fs[2] + ',' + fs[3] + fs[4] + fs[5] + ',' + fs[6] + fs[7] + fs[8];
           writeln(tmp);
         end;
@@ -124,7 +124,7 @@ begin
   write(tmp);
 
   textcolor(cyan);
-  write(' file(s) ');
+  write(' file(s)  ');
   str(total, fs);
   if length(fs) = 1 then tmp := '         ' + fs;
   if length(fs) = 2 then tmp := '        ' + fs;

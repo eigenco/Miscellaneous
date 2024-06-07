@@ -63,7 +63,7 @@ begin
         if nopar = 1 then write(']');
         c := c + 2;
       end;
-      for b := c to 13 do write(' ');
+      for b := c to 12 do write(' ');
       if dirinfo.attr and $10 <> $10 then
       begin
         total := total + dirinfo.size;
@@ -72,7 +72,7 @@ begin
       if nopar = 1 then
       begin
         a := a + 1;
-        if a = 5 then
+        if a = 6 then
         begin
           writeln;
           row := row + 1;

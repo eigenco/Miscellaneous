@@ -27,14 +27,13 @@ begin
     nopar := 0;
     prmstr := paramstr(1);
     if prmstr = '.' then prmstr := '*.*';
-    if prmstr = '*' then prmstr := '*.*';
     findfirst(prmstr, $3f, dirinfo);
   end;
 
   while doserror = 0 do
   begin
     textcolor(lightgray);
-    if dirinfo.attr <> 8 then
+    if (dirinfo.attr <> 8) and ((dirinfo.attr <> 15) or (prmstr = '*.*')) then
     begin
       d := 0;
       extension  := '';
@@ -51,7 +50,8 @@ begin
       end;
       if extension = '.BAK' then textcolor(cyan);
       if extension = '.ZIP' then textcolor(magenta);
-      if extension = '.TXT' then textcolor(yellow);
+      if extension = '.TXT' then textcolor(white);
+      if extension = '.BAT' then textcolor(yellow);
       if extension = '.EXE' then textcolor(lightcyan);
       if extension = '.COM' then textcolor(lightred);
       if extension = '.PAS' then textcolor(green);
@@ -99,6 +99,9 @@ begin
           if length(fs) = 7 then tmp :=   ' ' + fs[1] + ',' + fs[2] + fs[3] + fs[4] + ',' + fs[5] + fs[6] + fs[7];
           if length(fs) = 8 then tmp := fs[1] + fs[2] + ',' + fs[3] + fs[4] + fs[5] + ',' + fs[6] + fs[7] + fs[8];
           writeln(tmp);
+          {write(tmp);
+          write('  ');
+          writeln(dirinfo.attr);}
         end;
         row := row + 1;
       end;
